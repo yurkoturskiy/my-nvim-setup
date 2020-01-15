@@ -22,6 +22,8 @@ call plug#end()
 colorscheme gruvbox
 
 " General settings
+set mouse=a " Enable copy and paste with ctrl-c/v
+source $VIMRUNTIME/mswin.vim
 set encoding=UTF-8
 set number
 set guifont=FuraCode\ NF:h11
