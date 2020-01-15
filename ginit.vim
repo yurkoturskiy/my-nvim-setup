@@ -1,23 +1,32 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 "Plug 'tsony-tsonev/nerdtree-git-plugin'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-Plug 'airblade/vim-gitgutter'
+" Git
+Plug 'tpope/vim-fugitive'
+" Highlight word on hover
+Plug 'dominikduda/vim_current_word'
+
+" Statusline/tablines
+Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim' " statusline/tabline
 
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'mileszs/ack.vim'
 "Plug 'Yggdroot/LeaderF'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'itchyny/lightline.vim' " statusline/tabline
 
 " Highlight syntax
 Plug 'sheerun/vim-polyglot'
 "Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+"Plug 'pangloss/vim-javascript'
+"Plug 'maxmellon/vim-jsx-pretty'
 
  "Simulating smooth scroll motions 
 Plug 'terryma/vim-smooth-scroll'
@@ -25,15 +34,17 @@ Plug 'terryma/vim-smooth-scroll'
 
 Plug 'tpope/vim-surround' " wrap text with something
 Plug 'fszymanski/deoplete-emoji', {'for': 'markdown'} " Emoji
-Plug 'machakann/vim-highlightedyank' " Highlight yanked region
+
 " Themes
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 call plug#end()
 
 " Themes
-" colorscheme nord
-colorscheme nord
+"colorscheme onehalfdark
+colorscheme onedark
 
 " General settings
 syntax on
@@ -41,7 +52,7 @@ set mouse=a " Enable copy and paste with ctrl-c/v
 source $VIMRUNTIME/mswin.vim
 set encoding=UTF-8
 set number
-set guifont=FuraCode\ NF:h11
+GuiFont! FuraCode\ NF:h11
 set smarttab
 set cindent
 set tabstop=2
@@ -75,9 +86,20 @@ nmap <S-f> <Plug>(coc-codeaction)
 
 nmap <F2> <Plug>(coc-rename)
 
+" coc-explorer
+nmap <C-n> :CocCommand explorer<CR>
+
+" vim_current_word
+" Twins of word under cursor:
+let g:vim_current_word#highlight_twins = 1
+" The word under cursor:
+let g:vim_current_word#highlight_current_word = 0
+let g:vim_current_word#highlight_delay = 0
+
+
 " NerdTree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeIgnore = ['^node_modules$']
+"map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore = ['^node_modules$','^.git$']
 let g:NERDTreeGitStatusWithFlags = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:NERDTreeGitStatusNodeColorization = 1
@@ -106,6 +128,8 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ 'coc-svg',
   \ 'coc-css',
+  \ 'coc-yank',
+  \ 'coc-explorer',
   \ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
