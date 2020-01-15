@@ -73,6 +73,8 @@ inoremap <silent>  <S-Insert>  <C-R>+
 " ESLint
 nmap <S-f> <Plug>(coc-codeaction)
 
+nmap <F2> <Plug>(coc-rename)
+
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^node_modules$']
