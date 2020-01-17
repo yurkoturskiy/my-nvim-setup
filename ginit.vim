@@ -1,35 +1,32 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'scrooloose/nerdtree'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-obsession' " Sessions handler
-Plug 'mhinz/vim-startify' " Starter
+Plug 'terryma/vim-multiple-cursors'
+" Plug 'tpope/vim-obsession' " Sessions handler
+" Plug 'mhinz/vim-startify' " Starter
 
 " Git
 Plug 'tpope/vim-fugitive'
-" Highlight word on hover
-Plug 'dominikduda/vim_current_word'
 
 " Statusline/tablines
 Plug 'vim-airline/vim-airline'
-" Plug 'zefei/vim-wintabs'
+Plug 'zefei/vim-wintabs'
+" Plug 'zefei/vim-wintabs-powerline'
 " Plug 'mkitt/tabline.vim'
 "Plug 'itchyny/lightline.vim' " statusline/tabline
 
 " Fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plug 'mileszs/ack.vim'
-"Plug 'Yggdroot/LeaderF'
+" Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+" Plug 'mileszs/ack.vim'
+Plug 'Yggdroot/LeaderF'
 
 " Commenting
 Plug 'tpope/vim-commentary' " Support JSX
 
 " Highlight syntax
 Plug 'sheerun/vim-polyglot'
+" Plug 'dominikduda/vim_current_word'
 "Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 "Plug 'pangloss/vim-javascript'
 "Plug 'maxmellon/vim-jsx-pretty'
@@ -66,7 +63,13 @@ set mouse=a " Enable copy and paste with ctrl-c/v
 source $VIMRUNTIME/mswin.vim
 set encoding=UTF-8
 set number
-GuiFont! FuraCode\ NF:h11
+autocmd FileType netrw setl bufhidden=delete
+
+" Font
+" GuiFont! FuraCode\ NF:h11
+" GuiFont! Iosevka\ NF:h12
+GuiFont! Consolas\ NF:h11
+
 set smarttab
 set cindent
 set tabstop=2
@@ -111,17 +114,33 @@ cnoremap <C-Tab> <C-C>:tabnext<CR>
 noremap <C-S-Tab> :<C-U>tabprevious<CR>
 inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
 cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
-
+" Wintab navigate
+map <A-h> <Plug>(wintabs_previous)
+map <A-l> <Plug>(wintabs_next)
+map <A-w> <Plug>(wintabs_close)
+" In insert or command mode, move normally by using Ctrl
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
 " coc-explorer
 nmap <C-n> :CocCommand explorer<CR>
 " autocmd User CocNvimInit :CocCommand explorer " autostart
 
-" vim_current_word
-" Twins of word under cursor:
-let g:vim_current_word#highlight_twins = 1
-" The word under cursor:
-let g:vim_current_word#highlight_current_word = 0
-let g:vim_current_word#highlight_delay = 0
+" Vim multiple cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -141,6 +160,10 @@ let g:airline#extensions#tabline#show_tabs = 1
 " Tabline
 " let g:tablineclosebutton=1
 " let g:wintabs_display = 'statusline'
+
+" LeaderF
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
 
 " coc extentions
 let g:coc_global_extensions = [
@@ -218,7 +241,15 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorMoved * silent call CocActionAsync('highlight')
+
+" highlight link CocHighlightText Visual
+highlight CursorColumn ctermbg=16 gui=underline guisp=#454C5E
+highlight CocWarningHighlight ctermfg=Yellow gui=undercurl guisp=Yellow
+highlight link CocInfoHighlight JavaScriptBraces
+highlight link CocErrorHighlight Error
+highlight CocHintHighlight ctermfg=Red  guifg=Red
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
