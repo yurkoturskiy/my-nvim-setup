@@ -6,7 +6,7 @@ Here I explain some of my configurations. Go to configuration [ginit.vim](https:
 
 ## Main package is [coc.nvim](https://github.com/neoclide/coc.nvim)
 
-Coc is a powerful package that makes vim work like VSCode. It has own [extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions) inside. Here is what I pick.
+Coc is a powerful package that makes vim work like VSCode. It has own [extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions) inside. Here is what I picked.
 ```vim
 " coc extentions
 let g:coc_global_extensions = [
@@ -122,5 +122,5 @@ Coc provides rename feature similar to VSCode
 nmap <F2> <Plug>(coc-rename)
 ```
 
-# ... and many more minor features. Copy them from [ginit.vim](./ginit.vim) file.
+## ... and many more minor features. Copy them from [ginit.vim](./ginit.vim) file.
 
