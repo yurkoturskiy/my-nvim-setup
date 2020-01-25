@@ -33,10 +33,10 @@ Plug 'tpope/vim-surround' " wrap text with something
 Plug 'fszymanski/deoplete-emoji', {'for': 'markdown'} " Emoji
 
 " Themes
-Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'joshdick/onedark.vim'
+" Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'rakr/vim-one'
 call plug#end()
 
@@ -53,8 +53,6 @@ set number
 autocmd FileType netrw setl bufhidden=delete
 
 " Font
-" GuiFont! FuraCode\ NF:h11
-" GuiFont! Iosevka\ NF:h12
 GuiFont! Consolas\ NF:h11
 
 set autoread
@@ -71,8 +69,6 @@ nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 nnoremap <esc> :noh<return><esc> 
 " Comment/Uncommentd "ctrl-/"
-" vmap <C-/> <plug>NERDCommenterToggle
-" nmap <C-/> <plug>NERDCommenterToggle
 xmap <C-/> <Plug>Commentary
 nmap <C-/> <Plug>CommentaryLine
 " Move lines up/down. Alternative to alt+up/down from VSCode
