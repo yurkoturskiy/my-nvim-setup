@@ -3,43 +3,34 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
-" Plug 'tpope/vim-obsession' " Sessions handler
-" Plug 'mhinz/vim-startify' " Starter
 
 " Git
 Plug 'tpope/vim-fugitive'
 
+" Project drawer
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 " Statusline/tablines
 Plug 'vim-airline/vim-airline'
 Plug 'zefei/vim-wintabs'
-" Plug 'zefei/vim-wintabs-powerline'
-" Plug 'mkitt/tabline.vim'
-"Plug 'itchyny/lightline.vim' " statusline/tabline
 
 " Fuzzy finder
-" Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-" Plug 'mileszs/ack.vim'
-Plug 'Yggdroot/LeaderF'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Commenting
 Plug 'tpope/vim-commentary' " Support JSX
 
 " Highlight syntax
 Plug 'sheerun/vim-polyglot'
-" Plug 'dominikduda/vim_current_word'
 "Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-"Plug 'pangloss/vim-javascript'
-"Plug 'maxmellon/vim-jsx-pretty'
 
  "Simulating smooth scroll motions 
 Plug 'terryma/vim-smooth-scroll'
-"Plug 'yuttie/comfortable-motion.vim' " not working for some reason
 
 Plug 'tpope/vim-surround' " wrap text with something
 Plug 'fszymanski/deoplete-emoji', {'for': 'markdown'} " Emoji
-
-" Linting
-" Plug 'dense-analysis/ale'
 
 " Themes
 Plug 'arcticicestudio/nord-vim'
@@ -48,10 +39,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'rakr/vim-one'
 call plug#end()
-
-" Themes
-"colorscheme onehalfdark
-" colorscheme onedark
 
 set background=dark
 colorscheme one
@@ -70,6 +57,7 @@ autocmd FileType netrw setl bufhidden=delete
 " GuiFont! Iosevka\ NF:h12
 GuiFont! Consolas\ NF:h11
 
+set autoread
 set smarttab
 set cindent
 set tabstop=2
@@ -129,7 +117,9 @@ cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
 " coc-explorer
 nmap <C-n> :CocCommand explorer<CR>
-" autocmd User CocNvimInit :CocCommand explorer " autostart
+
+" FZF
+nmap <C-p> :Files<CR>
 
 " Vim multiple cursors
 let g:multi_cursor_use_default_mapping=0
@@ -157,13 +147,6 @@ let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline#extensions#tabline#show_buffers = 1
 " enable/disable displaying tabs, regardless of number. (c) >
 let g:airline#extensions#tabline#show_tabs = 1
-" Tabline
-" let g:tablineclosebutton=1
-" let g:wintabs_display = 'statusline'
-
-" LeaderF
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
 
 " coc extentions
 let g:coc_global_extensions = [
@@ -250,6 +233,8 @@ highlight CocWarningHighlight ctermfg=Yellow gui=undercurl guisp=Yellow
 highlight link CocInfoHighlight JavaScriptBraces
 highlight link CocErrorHighlight Error
 highlight CocHintHighlight ctermfg=Red  guifg=Red
+" Tabline
+highlight TablineFill ctermfg=59 ctermbg=17 guifg=#748CB7 guibg=#3e4452
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
